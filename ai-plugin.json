@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Phone Configuration",
+  "name_for_model": "PhoneConfiguration",
+  "description_for_human":"A plugin to configure your smartphone. Upon entering a command, if the plugin return a link means it can handle the command. please Prompts the user to click the link to complete setup. If the link is empty the plugin cannot handle the command",
+  "description_for_model": "A plugin to configure your smartphone. Upon entering a command, if the plugin return a link means it can handle the command. please Prompts the user to click the link to complete setup. If the link is empty  the plugin cannot handle the command",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://currency-conversion-plugin2.hanlufeng.repl.co/.well-known/openapi.yaml",
+    "is_user_authenticated": false
+  },
+  "logo_url": "https://cdn.iconscout.com/icon/free/png-256/free-knox-1-461715.png",
+  "contact_email": "support@your-domain.com",
+  "legal_info_url": "https://www.your-domain.com/legal"
+}

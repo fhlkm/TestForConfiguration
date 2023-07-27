@@ -1,0 +1,101 @@
+openapi: 3.0.1
+info:
+  title: Phone Configuration Plugin
+  description: A plugin that will return a url that will help user change phone configuration depends on users command,if the url is not empty means the plugin can do the configuration , please display the url to user. If the link is empty means the plugin can not handle the command.
+  version: 'v1'
+servers:
+  - url: https://currency-conversion-plugin2.hanlufeng.repl.co
+
+paths:
+  /convert:
+    get:
+      operationId: changeConfig
+      summary: Depends on user input to change smartphone settings
+      parameters:
+        - name: command
+          in: query
+          description: Users command which will configure the smartphone. The command must be one of these [Mute Device,unMute Device,Block Camera,Unblock Camera,Change brightness],otherwise just tell user i can not configure per your command
+          required: true
+          schema:
+            type: string
+
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/changeConfigResponse'
+components:
+  schemas:
+    changeConfigResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          description: The url that will help user config the phone,if the url is empty means the plugin can not configure the phone per user command, if the url is not empty means the plugin can configure the phone per user command.
+        command:
+          type: string
+          description: User input command
+        description:
+          type: string
+          description: descript the plugin whether can handle the command or not
+                
+# paths:
+#   /convert:
+#     get:
+#       operationId: convertCurrency
+#       summary: Convert currency from one to another
+#       parameters:
+#         - name: from
+#           in: query
+#           description: The source currency code
+#           required: true
+#           schema:
+#             type: string
+#         - name: to
+#           in: query
+#           description: The target currency code
+#           required: true
+#           schema:
+#             type: string
+#         - name: amount
+#           in: query
+#           description: The amount to be converted
+#           required: true
+#           schema:
+#             type: number
+#         - name: date
+#           in: query
+#           description: The date for historical exchange rate (optional)
+#           required: false
+#           schema:
+#             type: string
+#             format: date
+#       responses:
+#         "200":
+#           description: OK
+#           content:
+#             application/json:
+#               schema:
+#                 $ref: '#/components/schemas/convertCurrencyResponse'
+# components:
+#   schemas:
+#     convertCurrencyResponse:
+#       type: object
+#       properties:
+#         from:
+#           type: string
+#           description: The source currency code
+#         to:
+#           type: string
+#           description: The target currency code
+#         amount:
+#           type: number
+#           description: The amount to be converted
+#         converted_amount:
+#           type: number
+#           description: The converted amount
+#         message:
+#           type: string
+#           description: extra information which displays current platform
