@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Phone Configuration Plugin
-  description: A plugin that will return a url that will help user change phone configuration depends on users command,if the url is not empty means the plugin can do the configuration , please display the url to user. If the link is empty means the plugin can not handle the command.
+  description: A plugin that will return a url that will help user change phone configuration(or do the action) depends on user\'s command,if the url is not empty means the plugin can do the configuration(action) , please display the url to user. If the link is empty means the plugin can not handle the command.
   version: 'v1'
 servers:
   - url: https://currency-conversion-plugin2.hanlufeng.repl.co
@@ -10,11 +10,11 @@ paths:
   /convert:
     get:
       operationId: changeConfig
-      summary: Depends on user input to change smartphone settings
+      summary: Depends on user\'s input to change smartphone settings
       parameters:
         - name: command
           in: query
-          description: Users command which will configure the smartphone. The command must be one of these [Mute Device,unMute Device,Block Camera,Unblock Camera,Change brightness],otherwise just tell user i can not configure per your command
+          description: Users command which will configure the smartphone. The command must be one of these  [Mute Device,unMute Device,Block Camera,Unblock Camera,Change brightness],otherwise just tell user i can not configure per your command
           required: true
           schema:
             type: string
@@ -30,11 +30,11 @@ paths:
   /setaction:
     get:
       operationId: changeConfig
-      summary: Depends on user requirement get condition and action
+      summary: Get condition and action per  user\'s requirement
       parameters:
         - name: condition
           in: query
-          description:  The condition must be  one of [time, location], otherwise just tell user i can not configure per your command.
+          description:  The condition type must be  one of [time, location], otherwise just tell user i can not configure per your command.
           required: true
           schema:
             type: string
@@ -59,7 +59,7 @@ components:
       properties:
         url:
           type: string
-          description: The url that will help user config the phone,if the url is empty means the plugin can not configure the phone per user command, if the url is not empty means the plugin can configure the phone per user command.
+          description: The url that will help user do the action using the phone,if the url is empty means the plugin can not do the action per user command, if the url is not empty means the plugin can help user do the action.
         command:
           type: string
           description: User input command

@@ -79,7 +79,7 @@ def change_config():
     return jsonify({"error": str(e)}), 400
 @app.route('/setaction', methods=['GET'])
 def set_action():
-  linkUrl = "https://fhlkm.github.io/configuration/?command="
+  linkUrl = "https://fhlkm.github.io/configuration/?"
   condition = request.args.get('condition')
   action = request.args.get('action')
   description = "I will do your action , please open this link:"
