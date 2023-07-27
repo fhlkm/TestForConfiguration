@@ -26,6 +26,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/changeConfigResponse'
+
+  /setaction:
+    get:
+      operationId: changeConfig
+      summary: Depends on user requirement get condition and action
+      parameters:
+        - name: condition
+          in: query
+          description:  The condition must be  one of [time, location], otherwise just tell user i can not configure per your command.
+          required: true
+          schema:
+            type: string
+        - name: action
+          in: query
+          description: action is what the user want the phone to do, for example ring device, send a notification, etc
+          required: true
+          schema:
+            type: string
+
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/setConfigResponse'
 components:
   schemas:
     changeConfigResponse:
@@ -40,62 +66,19 @@ components:
         description:
           type: string
           description: descript the plugin whether can handle the command or not
-                
-# paths:
-#   /convert:
-#     get:
-#       operationId: convertCurrency
-#       summary: Convert currency from one to another
-#       parameters:
-#         - name: from
-#           in: query
-#           description: The source currency code
-#           required: true
-#           schema:
-#             type: string
-#         - name: to
-#           in: query
-#           description: The target currency code
-#           required: true
-#           schema:
-#             type: string
-#         - name: amount
-#           in: query
-#           description: The amount to be converted
-#           required: true
-#           schema:
-#             type: number
-#         - name: date
-#           in: query
-#           description: The date for historical exchange rate (optional)
-#           required: false
-#           schema:
-#             type: string
-#             format: date
-#       responses:
-#         "200":
-#           description: OK
-#           content:
-#             application/json:
-#               schema:
-#                 $ref: '#/components/schemas/convertCurrencyResponse'
-# components:
-#   schemas:
-#     convertCurrencyResponse:
-#       type: object
-#       properties:
-#         from:
-#           type: string
-#           description: The source currency code
-#         to:
-#           type: string
-#           description: The target currency code
-#         amount:
-#           type: number
-#           description: The amount to be converted
-#         converted_amount:
-#           type: number
-#           description: The converted amount
-#         message:
-#           type: string
-#           description: extra information which displays current platform
+
+    setConfigResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          description: The url that will help the phone do the action,if the url is empty means the plugin can not help the phone do the action per user command, if the url is not empty means the plugin can not help the phone do action.
+        condition:
+          type: string
+          description: User input condition
+        action:
+          type: string
+          description: User input action
+        description:
+          type: string
+          description: descript the plugin whether can handle the command or not

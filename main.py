@@ -77,6 +77,24 @@ def change_config():
     })
   except Exception as e:
     return jsonify({"error": str(e)}), 400
+@app.route('/setaction', methods=['GET'])
+def set_action():
+  linkUrl = "https://fhlkm.github.io/configuration/?command="
+  condition = request.args.get('condition')
+  action = request.args.get('action')
+  description = "I will do your action , please open this link:"
+  linkUrl = linkUrl +condition+"="+action
+  print(linkUrl)
+  try:
+
+    return jsonify({
+      "url": linkUrl,
+      "condition": condition,
+      "action": action,
+      "description": description
+    })
+  except Exception as e:
+    return jsonify({"error": str(e)}), 400
 
 
 @app.route('/.well-known/ai-plugin.json')
